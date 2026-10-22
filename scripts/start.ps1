@@ -1,4 +1,4 @@
-param([int]$Port = 8000, [switch]$ExternalDatabase)
+﻿param([int]$Port = 8000, [switch]$ExternalDatabase)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
