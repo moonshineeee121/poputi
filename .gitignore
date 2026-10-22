@@ -1,0 +1,63 @@
+# Python environments and downloaded runtimes
+.venv/
+venv/
+env/
+/.tools/
+/.runtime/
+
+# Local settings and secrets; keep configuration examples
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Python bytecode, caches and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+/build/
+/dist/
+
+# Test reports and coverage
+.coverage
+.coverage.*
+/coverage.xml
+/htmlcov/
+/test-results/
+
+# Generated Django files; static/ contains source assets and stays tracked
+/staticfiles/
+/media/
+
+# Local PostgreSQL data and database exports
+/postgres_data/
+/pgdata/
+/poputi-data/
+/transfer/
+/backup/
+/backups/
+*.dump
+*.backup
+*.sql
+*.sql.*
+
+# Local scratch files and logs
+/test.py
+*.log
+*.tmp
+*.temp
+*.bak
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*

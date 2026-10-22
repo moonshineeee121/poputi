@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Авторские путешествия в маленьких группах. Найдите свой маршрут и забронируйте места на выезд.">
+  <title>{% block title %}Попути — путешествия, которые сближают{% endblock %}</title>
+  <link rel="icon" href="{% static 'img/mark.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <script src="{% static 'js/site.js' %}" defer></script>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="{% url 'tours:home' %}" aria-label="Попути — на главную"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 31 16 8l7 15 5-10 8 18H5Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="m12 18 4 4 5-3" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>попути<span class="brand-dot">.</span></a>
+  <button class="menu-toggle" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">☰</button>
+  <nav class="navigation" id="main-navigation" aria-label="Основная навигация">
+    <a href="{% url 'tours:home' %}#tours">Путешествия</a><a href="{% url 'tours:home' %}#destinations">Направления</a><a href="{% url 'tours:home' %}#how-it-works">Как это работает</a>
+  </nav>
+  <div class="account-nav">
+  {% if user.is_authenticated %}
+    <a class="nav-bookings" href="{% url 'bookings:mine' %}">Мои брони</a>
+    <span class="user-name">{{ user.display_name }}</span>
+    <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button class="button button-outline button-small" type="submit">Выйти</button></form>
+  {% else %}
+    <a class="button button-outline button-small" href="{% url 'accounts:login' %}"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="6" r="3"/><path d="M4 17v-2a6 6 0 0 1 12 0v2"/></svg>Войти</a>
+  {% endif %}
+  </div>
+</header>
+{% if messages %}<div class="messages" role="status">{% for message in messages %}<div class="notice {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer" id="about"><div><a class="brand" href="{% url 'tours:home' %}">попути<span class="brand-dot">.</span></a><p>Хорошие маршруты. Близкие по духу люди.</p></div><div class="footer-links"><a href="{% url 'tours:home' %}#tours">Найти путешествие</a><a href="{% url 'bookings:mine' %}">Мои бронирования</a><a href="{% url 'tours:home' %}#how-it-works">Как это работает</a></div><span class="footer-note">Авторские туры · {% now 'Y' %}</span></footer>
+</body></html>
